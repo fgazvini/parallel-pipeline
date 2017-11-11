@@ -2,9 +2,17 @@ pipeline {
   agent none
   stages {
     stage('foo') {
-      steps {
-        sh 'echo "First branch"'
-        sh 'echo "second bracnh"'
+      parallel {
+        stage('first') {
+          steps {
+            sh 'echo "first branch"'
+          }
+        }
+        stage('second') {
+          steps {
+            sh 'echo "Second branch"'
+          }
+        }
       }
     }
   }
